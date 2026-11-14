@@ -31,7 +31,7 @@
 | macOS Apple Silicon | `Chobits-LiveTalk_<version>_mac_arm64.dmg` |
 | macOS Intel | `Chobits-LiveTalk_<version>_mac_x64.dmg` |
 | Windows 10/11 | `Chobits-LiveTalk_<version>_win_x64.exe` |
-| Linux x64 | `Chobits-LiveTalk_<version>_linux_x64.AppImage` / `.deb` |
+| Linux x64 | `Chobits-LiveTalk_<version>_linux_x86_64.AppImage` / `_linux_amd64.deb` |
 | Linux ARM64 | `Chobits-LiveTalk_<version>_linux_arm64.AppImage` / `.deb` |
 
 应用内置自动更新：安装后无需手动回到本页。自动更新读取本仓库的 GitHub Releases，`electron-updater` 会下载与当前平台匹配的包并在下次重启时安装。
