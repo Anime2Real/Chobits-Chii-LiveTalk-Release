@@ -19,15 +19,12 @@ interface ReleaseInfo {
   assets: Asset[]
 }
 
-type PlatformKey = 'mac-arm' | 'mac-intel' | 'win' | 'linux'
+type PlatformKey = 'mac' | 'win' | 'linux'
 
 function classify(name: string): PlatformKey | null {
   const n = name.toLowerCase()
   if (n.endsWith('.blockmap') || n.endsWith('.yml') || n.endsWith('.yaml')) return null
-  if (n.endsWith('.dmg')) {
-    if (n.includes('arm64') || n.includes('aarch64') || n.includes('silicon')) return 'mac-arm'
-    return 'mac-intel'
-  }
+  if (n.endsWith('.dmg')) return 'mac'
   if (n.endsWith('.exe') || n.endsWith('.msi')) return 'win'
   if (n.endsWith('.appimage')) return null
   if (n.endsWith('.deb')) return 'linux'
@@ -38,8 +35,13 @@ function formatSize(bytes: number): string {
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`
 }
 
-function archLabel(name: string): string {
+function archLabel(name: string, key: PlatformKey): string {
+  if (key === 'win') return ''
   const n = name.toLowerCase()
+  if (key === 'mac') {
+    if (n.includes('arm64') || n.includes('aarch64') || n.includes('silicon')) return 'Apple Silicon'
+    return 'Intel'
+  }
   if (n.includes('arm64') || n.includes('aarch64')) return 'ARM64'
   if (n.includes('x86_64') || n.includes('amd64') || n.includes('x64')) return 'x64'
   return ''
@@ -55,14 +57,9 @@ function shortLabel(name: string): string {
 }
 
 const ICONS: Record<PlatformKey, ReactNode> = {
-  'mac-arm': (
+  mac: (
     <svg viewBox="0 0 24 24" className="h-8 w-8" fill="currentColor" aria-hidden>
       <path d="M17.05 12.54c-.03-2.89 2.36-4.27 2.47-4.34-1.35-1.97-3.44-2.24-4.18-2.27-1.78-.18-3.47 1.05-4.37 1.05-.9 0-2.29-1.02-3.77-1-1.94.03-3.72 1.13-4.72 2.86-2.01 3.49-.51 8.66 1.45 11.5.96 1.39 2.1 2.95 3.6 2.89 1.45-.06 2-.93 3.75-.93s2.25.93 3.78.9c1.56-.03 2.55-1.41 3.5-2.8 1.1-1.61 1.55-3.17 1.58-3.25-.04-.02-3.03-1.16-3.09-4.61ZM14.16 4.06c.8-.97 1.34-2.32 1.19-3.66-1.15.05-2.55.77-3.38 1.73-.74.86-1.39 2.23-1.22 3.55 1.29.1 2.6-.65 3.41-1.62Z" />
-    </svg>
-  ),
-  'mac-intel': (
-    <svg viewBox="0 0 24 24" className="h-8 w-8" fill="currentColor" aria-hidden>
-      <path d="M4 4h16v10H4V4Zm0 12h16v4H4v-4Zm2-10v8h12V6H6Z" />
     </svg>
   ),
   win: (
@@ -72,7 +69,7 @@ const ICONS: Record<PlatformKey, ReactNode> = {
   ),
   linux: (
     <svg viewBox="0 0 24 24" className="h-8 w-8" fill="currentColor" aria-hidden>
-      <path d="M12 2c-1.7 0-3 1.4-3 3.1 0 .8.2 1.5.5 2.2-.9 1.2-1.5 2.7-1.5 4.4 0 1.7-.6 2.5-1.4 3.7-.7 1-1.1 2-1.1 3.1 0 1.9 1.3 3.5 3.2 3.5.8 0 1.5-.3 2.1-.8.4.2.8.3 1.2.3s.8-.1 1.2-.3c.6.5 1.3.8 2.1.8 1.9 0 3.2-1.6 3.2-3.5 0-1.1-.4-2.1-1.1-3.1-.8-1.2-1.4-2-1.4-3.7 0-1.7-.6-3.2-1.5-4.4.3-.7.5-1.4.5-2.2C15 3.4 13.7 2 12 2Zm-1.2 3.2c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9Zm2.4 0c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9Zm-2.1 3.2c1.2 0 2.2 1.1 2.2 2.4 0 1.1-.6 1.7-1.3 2.2-.4.3-.6.6-.6 1.1h-1c0-.9.4-1.4 1-1.9.6-.4 1-.8 1-1.4 0-.8-.6-1.4-1.3-1.4s-1.3.6-1.3 1.4h-1c0-1.3.9-2.4 2.3-2.4Z" />
+      <path d="M12.5 1.6c-1.5 0-2.7 1.2-2.9 2.8-.1.7-.1 1.5-.3 2.1-.3 1-1 1.9-1.3 2.9-.2.7-.3 1.5-.4 2.2-.1.6-.2 1.3-.5 1.8-.3.6-.8 1.1-1.2 1.7-.3.4-.6.9-.8 1.4-.2.6-.3 1.3-.2 1.9.1.5.4 1.1.8 1.3.4.3 1 .4 1.5.5.6.2 1.2.3 1.9.4.8.1 1.6.2 2.4.2 1.3 0 2.6-.1 3.8-.4.7-.2 1.4-.5 1.9-1 .4-.4.6-1 .5-1.6-.1-.7-.5-1.3-.9-1.9-.4-.6-.9-1.2-1.2-1.8-.3-.6-.4-1.2-.5-1.9-.1-.8-.2-1.6-.4-2.4-.2-1-.7-1.9-1-2.9-.2-.7-.2-1.4-.3-2.1-.2-1.6-1.3-2.8-2.6-2.9l-.5-.1Zm-1.9 3.5c.5-.1 1 .1 1.1.6.1.5-.2 1-.7 1.1-.5.1-1-.2-1.1-.6-.1-.5.2-1 .7-1.1Zm3.4 0c.5-.1 1 .2 1.1.6.1.5-.2 1-.7 1.1-.5.1-1-.1-1.1-.6-.1-.5.2-1 .7-1.1Zm-3.2 2.1c.5-.3 1.1-.4 1.7-.3.6.1 1.1.4 1.4.9.1.2.1.4-.1.6-.3.2-.8.1-1.2 0-.5-.1-1.1 0-1.5.3-.2.1-.4.1-.5-.1-.1-.2-.1-.4 0-.6.1-.4.1-.6.2-.8Zm-4.3 8.1c.4-.3.9-.6 1.4-.7.5-.1 1-.1 1.5 0 .4.1.7.3.9.6.1.2.1.5-.1.7-.3.3-.8.4-1.3.4-.6 0-1.2-.1-1.7-.3-.3-.1-.6-.3-.7-.5v-.2Zm5.9-.3c.4-.2.9-.4 1.4-.4.5 0 1 .1 1.4.3.3.2.6.4.7.7.1.3-.1.6-.3.7-.4.2-.9.2-1.3.2-.5 0-1.1-.1-1.5-.3-.3-.1-.5-.3-.6-.5 0-.3 0-.5.2-.7Z" />
     </svg>
   ),
 }
@@ -116,16 +113,16 @@ export default function Download() {
 
   const assetsFor = (key: PlatformKey): Asset[] =>
     (release?.assets.filter((asset) => classify(asset.name) === key) ?? []).sort((a, b) =>
-      `${archLabel(a.name)} ${shortLabel(a.name)}`.localeCompare(
-        `${archLabel(b.name)} ${shortLabel(b.name)}`
+      `${archLabel(a.name, key)} ${shortLabel(a.name)}`.localeCompare(
+        `${archLabel(b.name, key)} ${shortLabel(b.name)}`
       )
     )
 
-  const platforms: PlatformKey[] = ['mac-arm', 'mac-intel', 'win', 'linux']
+  const platforms: PlatformKey[] = ['mac', 'win', 'linux']
 
   return (
     <section id="download" className="noise bg-[var(--mint)]">
-      <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
+      <div className="mx-auto max-w-5xl px-4 py-20 md:px-6 md:py-28">
         <Reveal className="text-center">
           <p className="font-display text-sm tracking-[0.3em] text-[var(--ink-soft)]">{t.download.kicker}</p>
           <h2 className="font-display mt-3 text-4xl tracking-wide md:text-6xl">
@@ -139,7 +136,7 @@ export default function Download() {
           ) : null}
         </Reveal>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-6 sm:grid-cols-3">
           {platforms.map((key, index) => {
             const assets = assetsFor(key)
             const card = t.download.cards[index]
@@ -156,15 +153,18 @@ export default function Download() {
                       <span className="btn-pill w-full justify-center opacity-60">{t.download.loading}</span>
                     ) : state === 'ready' && assets.length > 0 ? (
                       assets.map((asset) => {
+                        const arch = archLabel(asset.name, key)
                         const label =
-                          key === 'linux' && archLabel(asset.name)
-                            ? `${archLabel(asset.name)} ${shortLabel(asset.name)}`
-                            : shortLabel(asset.name)
+                          key === 'mac'
+                            ? arch
+                            : arch
+                              ? `${arch} ${shortLabel(asset.name)}`
+                              : shortLabel(asset.name)
                         return (
                           <a
                             key={asset.name}
                             href={asset.url}
-                            className="btn-pill btn-pill--dark w-full justify-center"
+                            className="btn-pill btn-pill--dark w-full justify-center !px-4 text-[13px]"
                             aria-label={`${t.download.download} ${label} · ${formatSize(asset.size)}`}
                           >
                             ↓ {label} · {formatSize(asset.size)}

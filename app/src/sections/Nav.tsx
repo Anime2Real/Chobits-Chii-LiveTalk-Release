@@ -16,7 +16,7 @@ export default function Nav() {
           <img src={chiiLogo} alt="Chobits LiveTalk" className="h-9 w-9 rounded-full" />
           <span className="font-display text-lg tracking-wide">Chobits LiveTalk</span>
         </a>
-        <nav aria-label="Primary" className="ml-auto hidden items-center gap-6 text-sm font-bold text-[var(--ink-soft)] md:flex">
+        <nav aria-label="Primary" className="ml-auto hidden items-center gap-8 text-sm font-bold text-[var(--ink-soft)] md:flex">
           <a href="#features" className="hover:text-[var(--ink)]">{t.nav.features}</a>
           <a href="#download" className="hover:text-[var(--ink)]">{t.nav.download}</a>
           <a href="#install" className="hover:text-[var(--ink)]">{t.nav.install}</a>
@@ -24,14 +24,18 @@ export default function Nav() {
             {t.nav.community}
           </a>
         </nav>
-        <div className="ml-auto flex items-center gap-1 md:ml-0">
+        <div
+          role="group"
+          aria-label="Language"
+          className="ml-auto flex items-center gap-2 md:ml-8 md:border-l md:border-[var(--line)]/15 md:pl-6"
+        >
           {LANGS.map((item) => (
             <button
               key={item.id}
               type="button"
               onClick={() => setLang(item.id)}
               aria-pressed={lang === item.id}
-              className={`rounded-full px-2.5 py-1 text-xs font-bold transition ${
+              className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
                 lang === item.id
                   ? 'bg-[var(--ink-deep)] text-[var(--cream)]'
                   : 'text-[var(--ink-soft)] hover:bg-[var(--blush)]'

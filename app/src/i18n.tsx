@@ -21,7 +21,7 @@ const zh = {
       {
         title: '实时全双工语音',
         body: '16kHz 上行 / 24kHz 下行，Pipecat 负责 VAD、ASR、LLM 与 TTS；说话中可随时打断。',
-        chips: ['Pipecat raw_pcm', 'barge-in', '低延迟'],
+        chips: ['Pipecat 裸 PCM', '可打断', '低延迟'],
       },
       {
         title: '角色住在桌面',
@@ -45,8 +45,7 @@ const zh = {
     emptyLink: '打开 Releases ↗',
     download: '下载',
     cards: [
-      { label: 'macOS', sub: 'Apple Silicon' },
-      { label: 'macOS', sub: 'Intel' },
+      { label: 'macOS', sub: 'DMG · Apple Silicon / Intel' },
       { label: 'Windows', sub: '10 / 11' },
       { label: 'Linux', sub: 'DEB' },
     ],
@@ -82,7 +81,7 @@ const zh = {
   footer: {
     tagline: '小叽的语音优先桌面端。',
     releases: '全部 Releases',
-    family: 'Anime2Real 家族',
+    family: 'Anime2Real 团队',
     license: '代码 MIT；Live2D 与角色素材仅限非商业使用。',
   },
 }
@@ -105,7 +104,7 @@ const ja: typeof zh = {
       {
         title: 'リアルタイム全二重音声',
         body: '16kHz 上り / 24kHz 下り。VAD・ASR・LLM・TTS は Pipecat が担当し、話している途中でも割り込めます。',
-        chips: ['Pipecat raw_pcm', 'barge-in', '低遅延'],
+        chips: ['Pipecat 生PCM', '割り込み対応', '低遅延'],
       },
       {
         title: 'デスクトップに住む',
@@ -115,7 +114,7 @@ const ja: typeof zh = {
       {
         title: 'ローカル優先',
         body: '内蔵 mock、ローカル Pipecat sidecar、セルフホスト gateway の3通り。トークン暗号化・診断・デバイス自己診断付き。',
-        chips: ['ローカル backend', '診断パネル', 'デバイス診断'],
+        chips: ['ローカルバックエンド', '診断パネル', 'デバイス自己診断'],
       },
     ],
   },
@@ -129,8 +128,7 @@ const ja: typeof zh = {
     emptyLink: 'Releases を開く ↗',
     download: 'ダウンロード',
     cards: [
-      { label: 'macOS', sub: 'Apple Silicon' },
-      { label: 'macOS', sub: 'Intel' },
+      { label: 'macOS', sub: 'DMG · Apple Silicon / Intel' },
       { label: 'Windows', sub: '10 / 11' },
       { label: 'Linux', sub: 'DEB' },
     ],
@@ -166,7 +164,7 @@ const ja: typeof zh = {
   footer: {
     tagline: 'ちぃの音声ファースト・デスクトップアプリ。',
     releases: 'すべての Releases',
-    family: 'Anime2Real ファミリー',
+    family: 'Anime2Real チーム',
     license: 'コードは MIT。Live2D とキャラクター素材は非商用のみ。',
   },
 }
@@ -189,7 +187,7 @@ const en: typeof zh = {
       {
         title: 'Real-time full duplex',
         body: '16kHz in / 24kHz out. Pipecat handles VAD, ASR, LLM and TTS, so you can interrupt her mid-sentence.',
-        chips: ['Pipecat raw_pcm', 'barge-in', 'low latency'],
+        chips: ['Pipecat raw PCM', 'barge-in', 'low latency'],
       },
       {
         title: 'Lives on your desktop',
@@ -213,8 +211,7 @@ const en: typeof zh = {
     emptyLink: 'Open Releases ↗',
     download: 'Download',
     cards: [
-      { label: 'macOS', sub: 'Apple Silicon' },
-      { label: 'macOS', sub: 'Intel' },
+      { label: 'macOS', sub: 'DMG · Apple Silicon / Intel' },
       { label: 'Windows', sub: '10 / 11' },
       { label: 'Linux', sub: 'DEB' },
     ],
@@ -250,7 +247,7 @@ const en: typeof zh = {
   footer: {
     tagline: 'A voice-first desktop companion for Chii.',
     releases: 'All releases',
-    family: 'Anime2Real family',
+    family: 'Anime2Real team',
     license: 'Code MIT; Live2D and character assets are non-commercial only.',
   },
 }
