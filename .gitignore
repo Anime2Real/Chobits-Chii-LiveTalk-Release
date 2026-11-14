@@ -1,0 +1,8 @@
+app/node_modules/
+app/dist/
+app/*.tsbuildinfo
+node_modules/
+release/
+dist/
+*.log
+.DS_Store
