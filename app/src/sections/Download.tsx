@@ -37,6 +37,13 @@ function formatSize(bytes: number): string {
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`
 }
 
+function archLabel(name: string): string {
+  const n = name.toLowerCase()
+  if (n.includes('arm64') || n.includes('aarch64')) return 'ARM64'
+  if (n.includes('x86_64') || n.includes('amd64') || n.includes('x64')) return 'x64'
+  return ''
+}
+
 function shortLabel(name: string): string {
   const n = name.toLowerCase()
   if (n.endsWith('.appimage')) return 'AppImage'
@@ -108,7 +115,11 @@ export default function Download() {
   }, [])
 
   const assetsFor = (key: PlatformKey): Asset[] =>
-    release?.assets.filter((asset) => classify(asset.name) === key) ?? []
+    (release?.assets.filter((asset) => classify(asset.name) === key) ?? []).sort((a, b) =>
+      `${archLabel(a.name)} ${shortLabel(a.name)}`.localeCompare(
+        `${archLabel(b.name)} ${shortLabel(b.name)}`
+      )
+    )
 
   const platforms: PlatformKey[] = ['mac-arm', 'mac-intel', 'win', 'linux']
 
@@ -144,16 +155,22 @@ export default function Download() {
                     {state === 'loading' ? (
                       <span className="btn-pill w-full justify-center opacity-60">{t.download.loading}</span>
                     ) : state === 'ready' && assets.length > 0 ? (
-                      assets.map((asset) => (
-                        <a
-                          key={asset.name}
-                          href={asset.url}
-                          className="btn-pill btn-pill--dark w-full justify-center"
-                          aria-label={`${t.download.download} ${asset.name} · ${formatSize(asset.size)}`}
-                        >
-                          ↓ {shortLabel(asset.name)} · {formatSize(asset.size)}
-                        </a>
-                      ))
+                      assets.map((asset) => {
+                        const label =
+                          key === 'linux' && archLabel(asset.name)
+                            ? `${archLabel(asset.name)} ${shortLabel(asset.name)}`
+                            : shortLabel(asset.name)
+                        return (
+                          <a
+                            key={asset.name}
+                            href={asset.url}
+                            className="btn-pill btn-pill--dark w-full justify-center"
+                            aria-label={`${t.download.download} ${label} · ${formatSize(asset.size)}`}
+                          >
+                            ↓ {label} · {formatSize(asset.size)}
+                          </a>
+                        )
+                      })
                     ) : (
                       <a href={RELEASES_URL} className="btn-pill w-full justify-center opacity-70">
                         {t.download.emptyLink}
