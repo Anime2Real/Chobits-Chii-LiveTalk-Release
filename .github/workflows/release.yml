@@ -97,10 +97,18 @@ jobs:
         working-directory: source
       - run: pnpm build
         working-directory: source
-      - run: pnpm exec electron-builder --mac --arm64 --publish always
+      - name: Build and publish
         working-directory: source
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -z "${CSC_LINK:-}" ]; then
+            unset CSC_LINK
+            unset CSC_KEY_PASSWORD
+            export CSC_IDENTITY_AUTO_DISCOVERY=false
+          fi
+          pnpm exec electron-builder --mac --arm64 --publish always
 
   mac-x64:
     runs-on: macos-15-intel
@@ -129,10 +137,18 @@ jobs:
         working-directory: source
       - run: pnpm build
         working-directory: source
-      - run: pnpm exec electron-builder --mac --x64 --publish always
+      - name: Build and publish
         working-directory: source
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -z "${CSC_LINK:-}" ]; then
+            unset CSC_LINK
+            unset CSC_KEY_PASSWORD
+            export CSC_IDENTITY_AUTO_DISCOVERY=false
+          fi
+          pnpm exec electron-builder --mac --x64 --publish always
 
   windows-x64:
     runs-on: windows-latest
