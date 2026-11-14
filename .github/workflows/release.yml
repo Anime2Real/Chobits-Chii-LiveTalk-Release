@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Source tag, e.g. v0.2.1"
+        description: "Source tag, e.g. v0.2.2"
         required: true
         type: string
 
@@ -70,7 +70,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  mac-arm64:
+  mac:
     runs-on: macos-15
     env:
       CSC_LINK: ${{ secrets.MAC_CSC_LINK }}
@@ -108,47 +108,7 @@ jobs:
             unset CSC_KEY_PASSWORD
             export CSC_IDENTITY_AUTO_DISCOVERY=false
           fi
-          pnpm exec electron-builder --mac --arm64 --publish always
-
-  mac-x64:
-    runs-on: macos-15-intel
-    env:
-      CSC_LINK: ${{ secrets.MAC_CSC_LINK }}
-      CSC_KEY_PASSWORD: ${{ secrets.MAC_CSC_KEY_PASSWORD }}
-      APPLE_ID: ${{ secrets.APPLE_ID }}
-      APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
-      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: ${{ env.SOURCE_REPO }}
-          ref: ${{ env.SOURCE_REF }}
-          token: ${{ secrets.SOURCE_REPO_TOKEN || github.token }}
-          path: source
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 11
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-          cache-dependency-path: source/pnpm-lock.yaml
-      - run: pnpm install --frozen-lockfile
-        working-directory: source
-      - run: pnpm build
-        working-directory: source
-      - name: Build and publish
-        working-directory: source
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ -z "${CSC_LINK:-}" ]; then
-            unset CSC_LINK
-            unset CSC_KEY_PASSWORD
-            export CSC_IDENTITY_AUTO_DISCOVERY=false
-          fi
-          pnpm exec electron-builder --mac --x64 --publish always
+          pnpm exec electron-builder --mac --x64 --arm64 --publish always
 
   windows-x64:
     runs-on: windows-latest
