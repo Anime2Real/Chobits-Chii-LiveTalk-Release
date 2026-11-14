@@ -29,7 +29,8 @@ function classify(name: string): PlatformKey | null {
     return 'mac-intel'
   }
   if (n.endsWith('.exe') || n.endsWith('.msi')) return 'win'
-  if (n.endsWith('.appimage') || n.endsWith('.deb')) return 'linux'
+  if (n.endsWith('.appimage')) return null
+  if (n.endsWith('.deb')) return 'linux'
   return null
 }
 
@@ -46,7 +47,6 @@ function archLabel(name: string): string {
 
 function shortLabel(name: string): string {
   const n = name.toLowerCase()
-  if (n.endsWith('.appimage')) return 'AppImage'
   if (n.endsWith('.deb')) return 'DEB'
   if (n.endsWith('.dmg')) return 'DMG'
   if (n.endsWith('.exe')) return 'EXE'

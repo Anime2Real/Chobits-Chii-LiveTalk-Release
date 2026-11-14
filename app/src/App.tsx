@@ -3,6 +3,7 @@ import Hero from './sections/Hero'
 import Features from './sections/Features'
 import Download from './sections/Download'
 import InstallTips from './sections/InstallTips'
+import Community from './sections/Community'
 import Footer from './sections/Footer'
 import ScallopEdge from './components/ScallopEdge'
 import { LangProvider } from './i18n'
@@ -28,7 +29,9 @@ export default function App() {
           <Download />
           <Divider from="var(--mint)" to="var(--peach)" />
           <InstallTips />
-          <Divider from="var(--peach)" to="var(--ink-deep)" />
+          <Divider from="var(--peach)" to="var(--sage)" />
+          <Community />
+          <Divider from="var(--sage)" to="var(--ink-deep)" />
         </main>
         <Footer />
       </div>

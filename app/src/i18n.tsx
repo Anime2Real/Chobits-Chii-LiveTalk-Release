@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 export type Lang = 'zh' | 'ja' | 'en'
 
 const zh = {
-  nav: { features: '功能', download: '下载', install: '安装', source: '源码' },
+  nav: { features: '功能', download: '下载', install: '安装', community: '社区' },
   hero: {
     tag: 'VOICE-FIRST CHII COMPANION',
     title: '和 ちぃ',
@@ -12,7 +12,7 @@ const zh = {
     intro: '透明桌宠 + Pipecat 实时语音。她会在桌面角落听你说话、看着你、用 Live2D 口型回应你。',
     note: '按住说话或免按键收音 · 支持打断 · macOS / Windows / Linux',
     download: '下载 LiveTalk',
-    source: '查看源码',
+    community: '加入社区',
   },
   features: {
     kicker: 'WHAT IT DOES',
@@ -41,14 +41,14 @@ const zh = {
     released: '发布于',
     loading: '正在寻找最新版本…',
     emptyTitle: '还没有可用的发布包',
-    emptyBody: '可以先去 GitHub Releases 看看最新进展，或者从源码构建。',
+    emptyBody: '可以先去 GitHub Releases 看看最新进展。',
     emptyLink: '打开 Releases ↗',
     download: '下载',
     cards: [
       { label: 'macOS', sub: 'Apple Silicon' },
       { label: 'macOS', sub: 'Intel' },
       { label: 'Windows', sub: '10 / 11' },
-      { label: 'Linux', sub: 'AppImage / deb' },
+      { label: 'Linux', sub: 'DEB' },
     ],
   },
   install: {
@@ -65,14 +65,22 @@ const zh = {
       },
       {
         title: 'Linux',
-        body: 'AppImage 加执行权限后直接运行；deb 用系统包管理器安装。语音需要 PipeWire / PulseAudio 和可用的输入输出设备。',
+        body: '下载 deb，用系统包管理器安装。语音需要 PipeWire / PulseAudio 和可用的输入输出设备；后续版本从 Releases 手动更新。',
       },
     ],
   },
+  community: {
+    kicker: 'COMMUNITY',
+    title: '来玩呀',
+    body: '扫码加入 Anime2Real 社区。QQ 群和 Discord 会同步更新、安装包和日常闲聊。',
+    qq: 'QQ 群 809591826',
+    discord: 'Discord',
+    qqAlt: 'Anime2Real QQ 群二维码',
+    discordAlt: 'Anime2Real Discord 二维码',
+    note: '二维码来自 Mascot 发布页 · 扫码后在对应 App 内加入',
+  },
   footer: {
     tagline: '小叽的语音优先桌面端。',
-    source: 'LiveTalk 源码',
-    pipecat: 'Pipecat 语音管线',
     releases: '全部 Releases',
     family: 'Anime2Real 家族',
     license: '代码 MIT；Live2D 与角色素材仅限非商业使用。',
@@ -80,7 +88,7 @@ const zh = {
 }
 
 const ja: typeof zh = {
-  nav: { features: '機能', download: 'ダウンロード', install: 'インストール', source: 'ソース' },
+  nav: { features: '機能', download: 'ダウンロード', install: 'インストール', community: 'コミュニティ' },
   hero: {
     tag: 'VOICE-FIRST CHII COMPANION',
     title: 'ちぃと',
@@ -88,7 +96,7 @@ const ja: typeof zh = {
     intro: '透明なデスクトップコンパニオン + Pipecat のリアルタイム音声。ちぃが声を聞き、こちらを見て、Live2D の口パクで返事をします。',
     note: '押して話す / ハンズフリー · 割り込み対応 · macOS / Windows / Linux',
     download: 'LiveTalk をダウンロード',
-    source: 'ソースを見る',
+    community: 'コミュニティに参加',
   },
   features: {
     kicker: 'WHAT IT DOES',
@@ -117,14 +125,14 @@ const ja: typeof zh = {
     released: '公開日',
     loading: '最新版を探しています…',
     emptyTitle: 'まだ配布パッケージがありません',
-    emptyBody: 'GitHub Releases を確認するか、ソースからビルドしてください。',
+    emptyBody: 'GitHub Releases を確認してください。',
     emptyLink: 'Releases を開く ↗',
     download: 'ダウンロード',
     cards: [
       { label: 'macOS', sub: 'Apple Silicon' },
       { label: 'macOS', sub: 'Intel' },
       { label: 'Windows', sub: '10 / 11' },
-      { label: 'Linux', sub: 'AppImage / deb' },
+      { label: 'Linux', sub: 'DEB' },
     ],
   },
   install: {
@@ -141,14 +149,22 @@ const ja: typeof zh = {
       },
       {
         title: 'Linux',
-        body: 'AppImage は実行権限を付けて直接起動、deb はパッケージマネージャでインストール。PipeWire / PulseAudio と入出力デバイスが必要です。',
+        body: 'deb をパッケージマネージャでインストール。PipeWire / PulseAudio と入出力デバイスが必要です。更新は Releases から手動で行います。',
       },
     ],
   },
+  community: {
+    kicker: 'COMMUNITY',
+    title: 'あそびにきてね',
+    body: 'QR コードから Anime2Real コミュニティへ。QQ グループと Discord で更新情報・インストーラ・雑談を共有しています。',
+    qq: 'QQ グループ 809591826',
+    discord: 'Discord',
+    qqAlt: 'Anime2Real QQ グループのQRコード',
+    discordAlt: 'Anime2Real Discord のQRコード',
+    note: 'Mascot 公開ページの QR コードです · 対応アプリで読み取ってください',
+  },
   footer: {
     tagline: 'ちぃの音声ファースト・デスクトップアプリ。',
-    source: 'LiveTalk ソース',
-    pipecat: 'Pipecat 音声パイプライン',
     releases: 'すべての Releases',
     family: 'Anime2Real ファミリー',
     license: 'コードは MIT。Live2D とキャラクター素材は非商用のみ。',
@@ -156,7 +172,7 @@ const ja: typeof zh = {
 }
 
 const en: typeof zh = {
-  nav: { features: 'Features', download: 'Download', install: 'Install', source: 'Source' },
+  nav: { features: 'Features', download: 'Download', install: 'Install', community: 'Community' },
   hero: {
     tag: 'VOICE-FIRST CHII COMPANION',
     title: 'Talk with',
@@ -164,7 +180,7 @@ const en: typeof zh = {
     intro: 'A transparent desktop companion plus a Pipecat real-time voice loop. She listens, looks at you, and answers with Live2D lip sync.',
     note: 'Hold to talk or hands-free · barge-in · macOS / Windows / Linux',
     download: 'Download LiveTalk',
-    source: 'View source',
+    community: 'Join the community',
   },
   features: {
     kicker: 'WHAT IT DOES',
@@ -193,14 +209,14 @@ const en: typeof zh = {
     released: 'Released',
     loading: 'Looking for the latest build…',
     emptyTitle: 'No release package yet',
-    emptyBody: 'Check GitHub Releases for progress, or build from source.',
+    emptyBody: 'Check GitHub Releases for progress.',
     emptyLink: 'Open Releases ↗',
     download: 'Download',
     cards: [
       { label: 'macOS', sub: 'Apple Silicon' },
       { label: 'macOS', sub: 'Intel' },
       { label: 'Windows', sub: '10 / 11' },
-      { label: 'Linux', sub: 'AppImage / deb' },
+      { label: 'Linux', sub: 'DEB' },
     ],
   },
   install: {
@@ -217,14 +233,22 @@ const en: typeof zh = {
       },
       {
         title: 'Linux',
-        body: 'Make the AppImage executable and run it, or install the deb. Voice needs PipeWire / PulseAudio and working input/output devices.',
+        body: 'Install the deb with your package manager. Voice needs PipeWire / PulseAudio and working input/output devices; update manually from Releases.',
       },
     ],
   },
+  community: {
+    kicker: 'COMMUNITY',
+    title: 'Come say hi',
+    body: 'Scan to join the Anime2Real community. Updates, installers and casual chat live in both QQ and Discord.',
+    qq: 'QQ group 809591826',
+    discord: 'Discord',
+    qqAlt: 'Anime2Real QQ group QR code',
+    discordAlt: 'Anime2Real Discord QR code',
+    note: 'QR codes from the Mascot release page · scan inside the matching app',
+  },
   footer: {
     tagline: 'A voice-first desktop companion for Chii.',
-    source: 'LiveTalk source',
-    pipecat: 'Pipecat voice pipeline',
     releases: 'All releases',
     family: 'Anime2Real family',
     license: 'Code MIT; Live2D and character assets are non-commercial only.',

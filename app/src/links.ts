@@ -1,6 +1,5 @@
 export const REPO_URL = 'https://github.com/Anime2Real/Chobits-Chii-LiveTalk-Release'
 export const RELEASES_URL = `${REPO_URL}/releases`
-export const SOURCE_URL = 'https://github.com/Anime2Real/Chobits-Chii-LiveTalk'
-export const PIPECAT_URL = 'https://github.com/Anime2Real/Chobits-Chii-Pipecat'
+export const QQ_URL = 'https://qm.qq.com/q/Mvv6waayM8'
+export const DISCORD_URL = 'https://discord.gg/nr3a8hfCFp'
 export const FAMILY_URL = 'https://github.com/Anime2Real'
-export const PAGES_URL = 'https://anime2real.github.io/Chobits-Chii-LiveTalk-Release/'

@@ -2,7 +2,6 @@ import chiiHero from '../assets/chii-hero.webp'
 import BounceText, { FlowerMark } from '../components/BounceText'
 import Reveal from '../components/Reveal'
 import { useLang } from '../i18n'
-import { SOURCE_URL } from '../links'
 
 export default function Hero() {
   const { t } = useLang()
@@ -44,8 +43,8 @@ export default function Hero() {
               <a href="#download" className="btn-pill btn-pill--dark text-base">
                 <span className="bob inline-block">↓</span> {t.hero.download}
               </a>
-              <a href={SOURCE_URL} target="_blank" rel="noreferrer" className="btn-pill">
-                {t.hero.source} ↗
+              <a href="#community" className="btn-pill">
+                {t.hero.community}
               </a>
             </div>
           </Reveal>

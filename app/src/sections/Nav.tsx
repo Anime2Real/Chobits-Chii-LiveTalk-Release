@@ -1,6 +1,5 @@
 import chiiLogo from '../assets/chii-logo.webp'
 import { useLang, type Lang } from '../i18n'
-import { SOURCE_URL } from '../links'
 
 const LANGS: Array<{ id: Lang; label: string }> = [
   { id: 'zh', label: '中' },
@@ -21,8 +20,8 @@ export default function Nav() {
           <a href="#features" className="hover:text-[var(--ink)]">{t.nav.features}</a>
           <a href="#download" className="hover:text-[var(--ink)]">{t.nav.download}</a>
           <a href="#install" className="hover:text-[var(--ink)]">{t.nav.install}</a>
-          <a href={SOURCE_URL} target="_blank" rel="noreferrer" className="hover:text-[var(--ink)]">
-            {t.nav.source} ↗
+          <a href="#community" className="hover:text-[var(--ink)]">
+            {t.nav.community}
           </a>
         </nav>
         <div className="ml-auto flex items-center gap-1 md:ml-0">
