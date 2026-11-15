@@ -47,7 +47,7 @@ This repository is its user-facing release outlet. GitHub Releases hosts the ins
 
 | Branch / tag | Purpose |
 | --- | --- |
-| `main` | The only content branch (default). The landing page, workflows and all three READMEs are maintained here |
+| `main` | The only content branch (default). The landing page, `deploy.yml` and all three READMEs are maintained here |
 | `v*` | Release tags in the private source repository, matching the `package.json` version; they trigger `release.yml` there to build and publish to this repository |
 
 ## ⬇️ Download

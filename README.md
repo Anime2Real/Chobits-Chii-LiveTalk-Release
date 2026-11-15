@@ -47,7 +47,7 @@
 
 | 分支 / 标签 | 用途 |
 | --- | --- |
-| `main` | 唯一内容分支（默认）。发布页、workflow 与三语 README 均以此为准 |
+| `main` | 唯一内容分支（默认）。发布页、`deploy.yml` 与三语 README 均以此为准 |
 | `v*` | 发布标签，打在私有源码仓库；与 `package.json` 的 version 一致，触发源码仓库的 `release.yml` 构建并发布到本仓库 |
 
 ## ⬇️ 下载
