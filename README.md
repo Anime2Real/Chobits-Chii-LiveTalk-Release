@@ -2,7 +2,7 @@
   <img src="app/src/assets/chii-logo.webp" alt="Chii" width="120" height="120" />
   <h1>Chobits-Chii-LiveTalk-Release</h1>
   <p><b>叽～</b> 小叽的语音优先桌面端 · 发布页与安装包分发</p>
-  <p><code>Chobits-Chii-LiveTalk</code> 的用户侧发布出口：安装包、自动更新元数据，以及 <code>app/</code> 里的发布主页源码。发布页由 <b>GitHub Actions</b> 构建并部署到 <b>GitHub Pages</b>。出于服务器数据安全考虑，LiveTalk 客户端源码暂不开源，待完成完整安全评估后再考虑开源。</p>
+  <p><code>Chobits-Chii-LiveTalk</code> 的用户侧发布出口：安装包、自动更新元数据，以及 <code>app/</code> 里的发布主页源码。发布页由 <b>GitHub Actions</b> 构建并部署到 <b>GitHub Pages</b>。出于服务器数据安全考虑，LiveTalk 客户端源码暂不公开，待完成完整安全评估后再考虑公开源码。</p>
   <p>
     <a href="./README.md">简体中文</a> ｜ <a href="./README.ja.md">日本語</a> ｜ <a href="./README.en.md">English</a>
   </p>
@@ -13,13 +13,13 @@
     <a href="https://github.com/Anime2Real/Chobits-Chii-LiveTalk-Release/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/Anime2Real/Chobits-Chii-LiveTalk-Release/total"></a>
     <a href="https://github.com/Anime2Real/Chobits-Chii-LiveTalk-Release/actions/workflows/deploy.yml"><img alt="Deploy to GitHub Pages" src="https://github.com/Anime2Real/Chobits-Chii-LiveTalk-Release/actions/workflows/deploy.yml/badge.svg"></a>
     <img alt="Platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey">
-    <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-green.svg"></a>
+    <a href="LICENSE"><img alt="License: PolyForm NC 1.0.0" src="https://img.shields.io/badge/License-PolyForm%20NC%201.0.0-orange.svg"></a>
   </p>
 </div>
 
 > 💖 如果这个项目对你有帮助，欢迎在 [GitHub](https://github.com/Anime2Real/Chobits-Chii-LiveTalk-Release) 点个 Star —— 你的支持能让小叽被更多人听见！
 
-> ⚠️ 注意：Chobits 及角色「小叽 / Chii」的版权归 CLAMP 及相关权利方所有。本仓库的发布页与 workflow 以 MIT 发布；LiveTalk 客户端源码暂不开源。Live2D 模型、Cubism Core 与角色素材仅限非商业使用，详见 [ASSETS.md](./ASSETS.md)。
+> ⚠️ 注意：Chobits 及角色「小叽 / Chii」的版权归 CLAMP 及相关权利方所有。本仓库的发布页与 workflow 以 PolyForm Noncommercial 1.0.0 发布；LiveTalk 客户端源码暂不公开。Live2D 模型、Cubism Core 与角色素材仅限非商业使用，详见 [ASSETS.md](./ASSETS.md)。
 
 `Chobits-Chii-LiveTalk` 是小叽家族的**语音优先桌面端**：透明、可置顶的 Live2D 角色窗，接上 Pipecat 实时语音管线，就能全双工对话、随时打断，并用口型回应你。它不做聊天记录、多会话和复杂插件，只专注「和角色说话」这一条路径。
 
@@ -82,7 +82,7 @@ Windows / macOS 安装包内置自动更新：启动后会自动检查，也可�
 
 ## ℹ️ 说明
 
-- **源码说明**：出于服务器数据安全考虑，LiveTalk 客户端源码暂不开源。待完成完整安全评估后，我们将进行开源考虑；本仓库只负责安装包分发、自动更新元数据与发布页。
+- **源码说明**：出于服务器数据安全考虑，LiveTalk 客户端源码暂不公开。待完成完整安全评估后，我们将考虑公开源码；本仓库只负责安装包分发、自动更新元数据与发布页。
 - **开箱即用**：首次启动默认连接 Anime2Real 官方语音服务；也可以切换到本地 mock、本地 Pipecat sidecar 或自建网关。自建服务需要兼容 Pipecat `raw_pcm` 协议。
 - **反馈渠道**：问题反馈请通过应用内渠道进行。
 - **自动更新文件**：Releases 中的 `*.zip`、`*.blockmap` 与 `latest*.yml` 供自动更新使用；手动安装只需下载上表中的 dmg / exe / deb。
@@ -111,14 +111,15 @@ Windows / macOS 安装包内置自动更新：启动后会自动检查，也可�
 
 </details>
 
-## 📄 许可
+## 📄 许可协议
 
-- **发布页与 workflow**：MIT，见 [LICENSE](./LICENSE)
-- **LiveTalk 客户端源码**：暂不开源；待完成完整安全评估后再考虑开源
-- **Live2D 模型 / Cubism Core / 角色素材**：各自许可，仅限非商业使用，见 [ASSETS.md](./ASSETS.md)
-- **第三方依赖**：许可列表见 [ASSETS.md](./ASSETS.md) 的第三方代码表
+本仓库采用「严格非商用 + 双授权」，**不是 OSI 开源**。
 
-Chobits 与小叽（Chii）版权归 CLAMP 及相关权利方所有；本项目为非商业同人项目。
+- **代码**：PolyForm Noncommercial 1.0.0，见 [LICENSE](./LICENSE)。
+- **安装包 / 二进制**：遵循发布包内的 EULA 或各自许可；不在本仓库代码许可范围内。
+- **商业使用**：公开许可不允许商业使用；如需商用，请通过 [COMMERCIAL.md](./COMMERCIAL.md) 联系。
+- **历史版本**：此前版本的授权继续有效，见 [LICENSE-HISTORY.md](./LICENSE-HISTORY.md)。
+- **第三方素材 / 角色 IP**：不适用上述许可，见 [ASSETS.md](./ASSETS.md) / [NOTICE](./NOTICE)。
 
 ## ⚠️ 免责声明
 
